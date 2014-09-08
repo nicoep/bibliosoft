@@ -1,0 +1,95 @@
+package entidades;
+
+public class Obra {
+	int idObra;
+	String titulo;
+	String autor;
+	String editorial;
+	String cdu;
+	String isbn;
+	String imagen;
+	String descriptores;
+	int stock;
+	int idTipo;
+
+	public int getIdObra() {
+		return idObra;
+	}
+
+	public void setIdObra(int idObra) {
+		this.idObra = idObra;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getEditorial() {
+		return editorial;
+	}
+
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
+	}
+
+	public String getCdu() {
+		return cdu;
+	}
+
+	public void setCdu(String cdu) {
+		this.cdu = cdu;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getDescriptores() {
+		return descriptores;
+	}
+
+	public void setDescriptores(String descriptores) {
+		this.descriptores = descriptores;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public int getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
+	}
+
+}
