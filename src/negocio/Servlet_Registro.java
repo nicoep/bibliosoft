@@ -1,6 +1,5 @@
 package negocio;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServlet;

@@ -4,15 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Catalogo</title>
+<title>Home</title>
 </head>
 <body>
-	<div>
-		<h1>Catalogo</h1>
-	</div>
-	<div>
-	Lista
-	</div>
-
+	<p><input type="button" onclick="" value="Alta Usuario"></p>
+	
 </body>
 </html>
