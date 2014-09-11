@@ -23,6 +23,17 @@ public class Obra {
 	public String getTitulo() {
 		return titulo;
 	}
+	
+	public String getTipoString() {
+		switch (idTipo) {
+		case 1: return "Libro";
+		case 2: return "Revista";
+		case 3: return "Tesis";
+		case 4: return "Norma";
+		case 5: return "Proyecto";
+		}
+		return "";
+	}
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;

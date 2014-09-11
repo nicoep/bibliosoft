@@ -2,14 +2,38 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>bibliosoft</display-name>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>Home.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>Servlet_Registro</servlet-name>
-    <servlet-class>negocio.Servlet_Registro</servlet-class>
+    <servlet-name>Servlet_NuevoSocio</servlet-name>
+    <servlet-class>negocio.Servlet_NuevoSocio</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet_Login</servlet-name>
+    <servlet-class>negocio.Servlet_Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet_AltaObra</servlet-name>
+    <servlet-class>negocio.Servlet_AltaObra</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet_NuevoPrestamo</servlet-name>
+    <servlet-class>negocio.Servlet_NuevoPrestamo</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_Registro</servlet-name>
+    <servlet-name>Servlet_NuevoSocio</servlet-name>
     <url-pattern>/registrar_usuario</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet_Login</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet_AltaObra</servlet-name>
+    <url-pattern>/alta_obra</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet_NuevoPrestamo</servlet-name>
+    <url-pattern>/nuevo_prestamo</url-pattern>
   </servlet-mapping>
 </web-app>
