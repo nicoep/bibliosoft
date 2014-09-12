@@ -42,7 +42,7 @@ public class Socio_BD {
 	public void getUsuario(String user, String pass) throws SQLException {
 		Conexion_BD con = new Conexion_BD();
 		connection = con.openConnection();
-		PreparedStatement statement = connection.prepareStatement("SELECT * FROM socio WHERE usuario=? AND contraseña=?");
+		PreparedStatement statement = connection.prepareStatement("SELECT * FROM socio WHERE usuario=? AND contrase��a=?");
 		statement.setString(1, user);
 		statement.setString(2, pass);
 		ResultSet resultado = statement.executeQuery();
