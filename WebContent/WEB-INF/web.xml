@@ -20,6 +20,10 @@
     <servlet-name>Servlet_NuevoPrestamo</servlet-name>
     <servlet-class>negocio.Servlet_NuevoPrestamo</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Servlet_ModificaObra</servlet-name>
+    <servlet-class>negocio.Servlet_ModificaObra</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Servlet_NuevoSocio</servlet-name>
     <url-pattern>/registrar_usuario</url-pattern>
@@ -44,5 +48,9 @@
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet_ModificaObra</servlet-name>
+    <url-pattern>/modifica_obra</url-pattern>
   </servlet-mapping>
 </web-app>

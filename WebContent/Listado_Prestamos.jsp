@@ -4,9 +4,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="entidades.Obra"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="datos.Obra_BD"%>
+<%@ page import="datos.Socio_BD"%>
 
 <jsp:include page="Header.jsp" />
 
@@ -17,21 +17,16 @@
 %>
 
 <center>
-	<h3>Listado de Obras de la Biblioteca</h3>
+	<h3>Listado de Prestamos</h3>
 </center>
 <br>
 <a href="Alta_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a>
 <a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Listado de Socios</a>
 <a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: right">Listado de Prestamos</a>
 <br>	
-<form method="get" class="form-inline"
-	style="padding: 30px 0 30px 20px; border-left: 5px solid #5bc0de">
+<form method="get" class="form-inline" style="padding: 30px 0 30px 20px; border-left: 5px solid #5bc0de">
 	<div class="form-group">
-		<label>Buscar: </label> <input autofocus class="form-control"
-			type="text" name="busqueda" value="<%=busqueda%>">
-	</div>
-	<div class="form-group">
-		<label> tipo: </label> <select class="form-control" name="tipo">
+		<label> Estado: </label> <select class="form-control" name="tipo">
 			<%
 				String tipo = request.getParameter("tipo");
 				int tipoint = tipo == null ? 1 : Integer.valueOf(tipo);
@@ -58,34 +53,18 @@
 
 <table class="table table-striped">
 	<tr>
-		<th>Imagen</th>
-		<th>Título</th>
-		<th>Autor</th>
-		<th>Tipo de Obra</th>
+		<th>idPrestamo</th>
+		<th>idSocio</th>
+		<th>idObra</th>
+		<th>Fecha de Retiro</th>
+		<th>Fecha de Devolucion</th>
 	</tr>
 	<%
-		List<Obra> obras = new Obra_BD().buscarObras(
-				request.getParameter("busqueda"), tipoint);
+		List<Obra> obras = new Obra_BD().buscarObras(request.getParameter("busqueda"), tipoint);
 		for (Obra obra : obras) {
 	%>
 	<tr>
-		<%
-			if (usuario == 1) {
-		%>
 		<td><a href="Modificar_Obra.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
-		<%
-			} else if (usuario == 2) {
-		%>
-		<td><a href="Alta_Prestamo.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
-		<%
-			} else {
-		%>
-		<td><a href="Permiso_Denegado.jsp=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
-		<%
-			}
-		%>
-		
-
 		<td><%=obra.getTitulo()%></td>
 		<td><%=obra.getAutor()%></td>
 		<td><%=obra.getTitulo()%></td>

@@ -45,12 +45,18 @@ public class Obra_BD {
 
 	public void baja_obra(int idObra) throws SQLException {
 		Conexion_BD con = conectarBD();
-		PreparedStatement statement = connection
-				.prepareStatement("DELETE * FROM obra WHERE idObra=?");
-		statement.setInt(1, idObra);
-		int resultado = statement.executeUpdate();
-		con.closeConnection();
-		System.out.println(resultado);
+		try {
+			PreparedStatement statement = connection
+					.prepareStatement("DELETE * FROM obra WHERE idObra=?");
+			statement.setInt(1, idObra);
+			if (statement.executeUpdate() == 0) {
+				throw new RuntimeException("Error eliminando la obra");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
+		}
 	}
 
 	public Obra get_obra(int idObra) {
@@ -107,6 +113,24 @@ public class Obra_BD {
 		obra.setImagen(resultado.getString("imagen"));
 		obra.setIdTipo(resultado.getInt("idTipo"));
 		return obra;
+	}
+
+	public void modificaObra(int idObra, String cdu, int stock) {
+		Conexion_BD con = conectarBD();
+		try {
+			PreparedStatement statement;
+			statement = connection.prepareStatement("UPDATE obra SET cdu=?, stock=? WHERE idObra=?");
+			statement.setString(1, cdu);
+			statement.setInt(2, stock);
+			statement.setInt(3, idObra);
+			if (statement.executeUpdate() == 0) {
+				throw new RuntimeException("Error modificando obra");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
+		}
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.Prestamos_BD;
+import datos.Prestamo_BD;
 
 public class Servlet_NuevoPrestamo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,17 +18,19 @@ public class Servlet_NuevoPrestamo extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("idObra"));
+		int idObra = Integer.parseInt(request.getParameter("idObra"));
 		int idSocio = 1;
-		int idObra = 1;
 		try {
 			this.nuevoPrestamo(idSocio, idObra);
+			response.sendRedirect("/bibliosoft/");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void nuevoPrestamo(int idSocio, int idObra) throws SQLException {
-		Prestamos_BD prestamos_bd = new Prestamos_BD();
+		Prestamo_BD prestamos_bd = new Prestamo_BD();
 		prestamos_bd.nuevoPrestamo(idObra, idSocio);
 	}
 

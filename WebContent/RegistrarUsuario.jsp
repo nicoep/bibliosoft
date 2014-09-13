@@ -60,7 +60,8 @@
 		</div>
 	</div>
 	<div class="form-group" style="text-align: center">
-		<button type="submit" class="btn btn-primary">Registrarse</button>
+		<a href="/bibliosoft/" class="btn btn-danger">Volver</a>
+		<button type="submit" class="btn btn-success">Registrarse</button>
 	</div>
 </form>
 <jsp:include page="Footer.jsp" />

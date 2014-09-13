@@ -35,14 +35,13 @@
 							</div>
 							<div class="form-group" style="text-align: right">
 								<button type="button" class="btn btn-primary">Aceptar</button>
-								<a href="RegistrarUsuario.jsp" class="btn btn-link">Crear
-									Usuario</a>
+								<a href="RegistrarUsuario.jsp" class="btn btn-link">Crear Usuario</a>
 							</div>
 						</form>
 					</div>
 				</ul>
 			</div>
-			<button type="button" class="btn btn-danger">Salir</button>
+			<a href="/bibliosoft/" class="btn btn-info">Home</a>
 		</div>
 	</div>
 	<div class="container">
