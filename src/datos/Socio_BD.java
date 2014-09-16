@@ -9,39 +9,43 @@ import entidades.Socio;
 
 public class Socio_BD {
 	public static Socio getSocio(int idSocio) {
-			Conexion_BD con = new Conexion_BD();
-			PreparedStatement statement;
-			Socio s = null;
-			try {
-				statement = con.connection.prepareStatement("SELECT * FROM socio WHERE idSocio=?");
-				statement.setInt(1, idSocio);
-				ResultSet resultado = statement.executeQuery();
-				while (resultado.next()) {
-					Socio socio = new Socio();
-					socio.setApellido(resultado.getString("apellido"));
-					socio.setClave(resultado.getString("clave"));
-					socio.setDireccion(resultado.getString("direccion"));
-					socio.setDni(resultado.getString("dni"));
-					socio.setEmail(resultado.getString("email"));
-					socio.setIdSocio(resultado.getInt("idSocio"));
-					socio.setLegajo(resultado.getString("legajo"));
-					socio.setNombre(resultado.getString("nombre"));
-					socio.setTelefono(resultado.getString("telefono"));
-					socio.setUsuario(resultado.getString("usuario"));
-					s = socio;
-				}
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			} finally {
-				con.closeConnection();
+		Conexion_BD con = new Conexion_BD();
+		PreparedStatement statement;
+		Socio s = null;
+		try {
+			statement = con.connection
+					.prepareStatement("SELECT * FROM socio WHERE idSocio=?");
+			statement.setInt(1, idSocio);
+			ResultSet resultado = statement.executeQuery();
+			while (resultado.next()) {
+				Socio socio = new Socio();
+				socio.setApellido(resultado.getString("apellido"));
+				socio.setClave(resultado.getString("clave"));
+				socio.setDireccion(resultado.getString("direccion"));
+				socio.setDni(resultado.getString("dni"));
+				socio.setEmail(resultado.getString("email"));
+				socio.setIdSocio(resultado.getInt("idSocio"));
+				socio.setLegajo(resultado.getString("legajo"));
+				socio.setNombre(resultado.getString("nombre"));
+				socio.setTelefono(resultado.getString("telefono"));
+				socio.setUsuario(resultado.getString("usuario"));
+				s = socio;
 			}
-			return s;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
 		}
+		return s;
+	}
 
-	public static void altaSocio(String nombre, String apellido, String dni, String direccion, String telefono, String email, String legajo, String usuario, String contraseña) throws SQLException {
+	public static void altaSocio(String nombre, String apellido, String dni,
+			String direccion, String telefono, String email, String legajo,
+			String usuario, String contraseña) throws SQLException {
 		Conexion_BD con = new Conexion_BD();
 		try {
-			PreparedStatement statement = con.connection.prepareStatement("INSERT INTO socio (idSocio, nombre, apellido, dni, direccion, email, legajo, telefono, usuario, clave) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			PreparedStatement statement = con.connection
+					.prepareStatement("INSERT INTO socio (idSocio, nombre, apellido, dni, direccion, email, legajo, telefono, usuario, clave) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 			statement.setString(1, nombre);
 			statement.setString(2, apellido);
 			statement.setString(3, dni);
@@ -61,37 +65,44 @@ public class Socio_BD {
 		}
 	}
 
-//	public void bajaSocio(int idSocio) throws SQLException {
-//		Conexion_BD con = new Conexion_BD();
-//		connection = con.openConnection();
-//		PreparedStatement statement = connection.prepareStatement("DELETE FROM socio WHERE idSocio=?");
-//		statement.setInt(1, idSocio);
-//		int resultado = statement.executeUpdate();
-//	}
+	// public void bajaSocio(int idSocio) throws SQLException {
+	// Conexion_BD con = new Conexion_BD();
+	// connection = con.openConnection();
+	// PreparedStatement statement =
+	// connection.prepareStatement("DELETE FROM socio WHERE idSocio=?");
+	// statement.setInt(1, idSocio);
+	// int resultado = statement.executeUpdate();
+	// }
 
-	public static void getUsuario(String user, String pass) throws SQLException {
-		Conexion_BD con = new Conexion_BD();
-		PreparedStatement statement = con.connection.prepareStatement("SELECT * FROM socio WHERE usuario=? AND contraseña=?");
-		statement.setString(1, user);
-		statement.setString(2, pass);
-		ResultSet resultado = statement.executeQuery();
-		if (resultado != null) {
-			System.out.println("login ok");
-		} else {
-			System.out.println("usuario y/o clave incorrecta");
+	public static Integer getUsuario(String user, String pass) {
+		try {
+			Conexion_BD con = new Conexion_BD();
+			PreparedStatement statement = con.connection
+					.prepareStatement("SELECT * FROM socio WHERE usuario=? AND clave=?");
+			statement.setString(1, user);
+			statement.setString(2, pass);
+			ResultSet resultado = statement.executeQuery();
+			if (resultado.next()) {
+				return resultado.getInt("idSocio");
+			}
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 
 	}
-	
+
 	public static ArrayList<Socio> buscarSocios(String busqueda) {
 		Conexion_BD con = new Conexion_BD();
 		try {
 			PreparedStatement statement;
 			if (busqueda != null && !busqueda.isEmpty()) {
-				statement = con.connection.prepareStatement("SELECT * FROM socio WHERE legajo=?");
+				statement = con.connection
+						.prepareStatement("SELECT * FROM socio WHERE legajo=?");
 				statement.setString(1, busqueda);
 			} else {
-				statement = con.connection.prepareStatement("SELECT * FROM socio");
+				statement = con.connection
+						.prepareStatement("SELECT * FROM socio");
 			}
 			ResultSet resultado = statement.executeQuery();
 			ArrayList<Socio> socios = new ArrayList<>();
@@ -117,15 +128,16 @@ public class Socio_BD {
 			con.closeConnection();
 		}
 	}
-	
+
 	public static String traerLegajo(int idSocio) {
 		Conexion_BD con = new Conexion_BD();
 		try {
 			PreparedStatement statement;
-			statement = con.connection.prepareStatement("SELECT legajo FROM socio WHERE idSocio=?");
+			statement = con.connection
+					.prepareStatement("SELECT legajo FROM socio WHERE idSocio=?");
 			statement.setInt(1, idSocio);
 			ResultSet resultado = statement.executeQuery();
-			
+
 			if (resultado.next()) {
 				String legajo = resultado.getString("legajo");
 				return legajo;
@@ -138,13 +150,14 @@ public class Socio_BD {
 		return null;
 	}
 
-	public static void modificaSocio(int idSocio, String nombre, String apellido,
-			String dni, String direccion, String telefono, String email,
-			String legajo) {
+	public static void modificaSocio(int idSocio, String nombre,
+			String apellido, String dni, String direccion, String telefono,
+			String email, String legajo) {
 		Conexion_BD con = new Conexion_BD();
 		try {
 			PreparedStatement statement;
-			statement = con.connection.prepareStatement("UPDATE socio SET nombre=?, apellido=?, dni=?, direccion=?, telefono=?, email=?, legajo=? WHERE idSocio=?");
+			statement = con.connection
+					.prepareStatement("UPDATE socio SET nombre=?, apellido=?, dni=?, direccion=?, telefono=?, email=?, legajo=? WHERE idSocio=?");
 			statement.setString(1, nombre);
 			statement.setString(2, apellido);
 			statement.setString(3, dni);
@@ -161,6 +174,5 @@ public class Socio_BD {
 		} finally {
 			con.closeConnection();
 		}
-	}		
 	}
-
+}

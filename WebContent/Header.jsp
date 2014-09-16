@@ -14,6 +14,13 @@
 		<h1 style="float:left">Biblioteca UTN FRRo</h1>
 		<div style="float:right; margin-top: 20px">
 			<div class="dropdown" style="display: inline-block">
+			<% 
+			if (session.getAttribute("user") != null) {
+				%>
+				<a href="login?user=&clave=" class="btn btn-primary">Logout</a>
+				<%
+			} else {
+				%>
 				<a data-toggle="dropdown" class="btn btn-primary">Login</a>
 				<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
 					<div style="width: 280px; padding: 10px;">
@@ -21,6 +28,8 @@
 							<h3>Inicio de Sesión</h3>
 						</center>
 						<form action="login" method="post" class="form-horizontal">
+							<input name="origin" type="hidden" value="<%= request.getRequestURL().toString() + "?" + (request.getQueryString() != null ? 
+									request.getQueryString() : "") %>" />
 							<div class="form-group">
 								<div class=" col-xs-12">
 									<input type="text" name="usuario" placeholder="Usuario"
@@ -29,18 +38,20 @@
 							</div>
 							<div class="form-group">
 								<div class=" col-xs-12">
-									<input type="text" name="contraseña" placeholder="Contraseña"
+									<input type="text" name="clave" placeholder="Contraseña"
 										class="form-control" />
 								</div>
 							</div>
 							<div class="form-group" style="text-align: right">
-								<button type="button" class="btn btn-primary">Aceptar</button>
+								<button type="submit" class="btn btn-primary">Aceptar</button>
 								<a href="Alta_Usuario.jsp" class="btn btn-link">Crear Usuario</a>
 							</div>
 						</form>
 					</div>
 				</ul>
-			</div>
+			</div>				
+			<% } %>
+			
 			<a href="/bibliosoft/" class="btn btn-info">Home</a>
 		</div>
 	</div>
