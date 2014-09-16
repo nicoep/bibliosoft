@@ -35,7 +35,7 @@
 							</div>
 							<div class="form-group" style="text-align: right">
 								<button type="button" class="btn btn-primary">Aceptar</button>
-								<a href="RegistrarUsuario.jsp" class="btn btn-link">Crear Usuario</a>
+								<a href="Alta_Usuario.jsp" class="btn btn-link">Crear Usuario</a>
 							</div>
 						</form>
 					</div>

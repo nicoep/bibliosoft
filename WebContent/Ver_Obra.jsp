@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="Header.jsp" />
 <%
-	Obra obra = new Obra_BD().get_obra(Integer.valueOf(request.getParameter("id")));
+	Obra obra = Obra_BD.get_obra(Integer.valueOf(request.getParameter("id")));
 %>
 <center>
 	<h3><%=obra.getTitulo()%></h3>
@@ -60,8 +60,8 @@
 
 	<div class="form-group" style="text-align: center">
 		<a href="/bibliosoft/" class="btn btn-danger">Volver</a>
-		<a href="/bibliosoft/" class="btn btn-danger">Eliminar</a>
-		<button type="submit" class="btn btn-success">Modificar</button>
+		<input type="submit" value="Eliminar" name="action" class="btn btn-danger">
+		<input type="submit" value="Modificar" name="action" class="btn btn-success">
 	</div>
 </form>
 <jsp:include page="Footer.jsp" />

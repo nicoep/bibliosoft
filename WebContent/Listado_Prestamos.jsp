@@ -1,12 +1,16 @@
+<%@page import="java.util.List"%>
+<%@page import="datos.Prestamo_BD"%>
+<%@page import="entidades.Prestamo"%>
 <%@page import="entidades.TipoObra"%>
 <%@page import="java.util.Map.Entry"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@page import="entidades.Obra"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="entidades.Prestamo"%>
 <%@ page import="datos.Obra_BD"%>
 <%@ page import="datos.Socio_BD"%>
+<%@ page import="datos.Prestamo_BD"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <jsp:include page="Header.jsp" />
 
@@ -16,14 +20,13 @@
 	final int usuario = 2;
 %>
 
+<br>
+<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Socios</a>
+<a href="Home.jsp" class="btn btn-primary" style="float: right">Obras</a>
+<br>
 <center>
 	<h3>Listado de Prestamos</h3>
-</center>
-<br>
-<a href="Alta_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a>
-<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Listado de Socios</a>
-<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: right">Listado de Prestamos</a>
-<br>	
+</center>	
 <form method="get" class="form-inline" style="padding: 30px 0 30px 20px; border-left: 5px solid #5bc0de">
 	<div class="form-group">
 		<label> Estado: </label> <select class="form-control" name="tipo">
@@ -54,20 +57,23 @@
 <table class="table table-striped">
 	<tr>
 		<th>idPrestamo</th>
-		<th>idSocio</th>
-		<th>idObra</th>
+		<th>Legajo Socio</th>
+		<th>Titulo</th>
 		<th>Fecha de Retiro</th>
 		<th>Fecha de Devolucion</th>
 	</tr>
 	<%
-		List<Obra> obras = new Obra_BD().buscarObras(request.getParameter("busqueda"), tipoint);
-		for (Obra obra : obras) {
+		List<Prestamo> prestamos = Prestamo_BD.buscarPrestamos();
+		for (Prestamo p : prestamos) {
+			String legajo = Socio_BD.traerLegajo(p.getIdSocio());
+			String titulo = Obra_BD.traerTitulo(p.getIdObra());
 	%>
 	<tr>
-		<td><a href="Modificar_Obra.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
-		<td><%=obra.getTitulo()%></td>
-		<td><%=obra.getAutor()%></td>
-		<td><%=obra.getTitulo()%></td>
+		<td><a href="Prestamo.jsp?id=<%=p.getIdPrestamo()%>"><%= p.getIdPrestamo() %></a></td>
+		<td><%= legajo %></td>
+		<td><%= titulo %></td>
+		<td><%= p.getFechaRetiro() == null ? "" : p.getFechaRetiro() %>
+		<td><%= p.getFechaDevolucion() == null ? "" : p.getFechaDevolucion() %></td>
 	</tr>
 	<%
 		}

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Prestamo {
 	int idPrestamo;
-	int idIbra;
+	int idObra;
 	int idSocio;
 	Date fechaRetiro;
 	Date fechaDevolucion;
@@ -18,12 +18,12 @@ public class Prestamo {
 		this.idPrestamo = idPrestamo;
 	}
 
-	public int getIdIbra() {
-		return idIbra;
+	public int getIdObra() {
+		return idObra;
 	}
 
-	public void setIdIbra(int idIbra) {
-		this.idIbra = idIbra;
+	public void setIdObra(int idObra) {
+		this.idObra = idObra;
 	}
 
 	public int getIdSocio() {

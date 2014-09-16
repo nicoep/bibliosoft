@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.Date;
-
 public class Socio {
 	int idSocio;
 	String nombre;
@@ -11,9 +9,8 @@ public class Socio {
 	String telefono;
 	String email;
 	String legajo;
-	Date fechaAlta;
 	String usuario;
-	private String clave;
+	String clave;
 
 	public int getIdSocio() {
 		return idSocio;
@@ -77,14 +74,6 @@ public class Socio {
 
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
-	}
-
-	public Date getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
 	}
 
 	public String getUsuario() {

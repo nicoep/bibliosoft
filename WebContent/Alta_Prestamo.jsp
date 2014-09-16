@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="Header.jsp" />
 <%
-	Obra obra = new Obra_BD().get_obra(Integer.valueOf(request
+	Obra obra = Obra_BD.get_obra(Integer.valueOf(request
 			.getParameter("id")));
 %>
 <center>

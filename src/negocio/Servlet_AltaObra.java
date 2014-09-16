@@ -1,6 +1,7 @@
 package negocio;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,11 @@ public class Servlet_AltaObra extends HttpServlet {
 		String imagen = request.getParameter("imagen");
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		int idTipo = Integer.parseInt(request.getParameter("tipoObra"));
+		if (request.getParameter("id").isEmpty()) {
+			this.altaObra(titulo, autor, editorial, cdu, isbn, stock, idTipo, imagen);
+		} else {
+			int idObra = Integer.valueOf(request.getParameter("id"));
+		}
 		this.altaObra(titulo, autor, editorial, cdu, isbn, stock, idTipo, imagen);
 		response.sendRedirect("/bibliosoft/");
 	}

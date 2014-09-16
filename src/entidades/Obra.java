@@ -8,9 +8,9 @@ public class Obra {
 	String cdu;
 	String isbn;
 	String imagen;
-	String descriptores;
 	int stock;
 	int idTipo;
+	int state;
 
 	public int getIdObra() {
 		return idObra;
@@ -79,14 +79,6 @@ public class Obra {
 		this.imagen = imagen;
 	}
 
-	public String getDescriptores() {
-		return descriptores;
-	}
-
-	public void setDescriptores(String descriptores) {
-		this.descriptores = descriptores;
-	}
-
 	public int getStock() {
 		return stock;
 	}
@@ -101,6 +93,14 @@ public class Obra {
 
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 }
