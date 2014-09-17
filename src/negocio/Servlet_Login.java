@@ -26,7 +26,8 @@ public class Servlet_Login extends HttpServlet {
 			sesion.setAttribute("user", id);
 			response.sendRedirect("/bibliosoft/");
 		} else {
-			System.out.println("datos incorrectos");
+			sesion.setAttribute("login", null);
+			response.sendRedirect("/bibliosoft/InicioSesion.jsp");
 		}
 	
 	}

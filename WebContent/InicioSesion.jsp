@@ -14,8 +14,14 @@
 		<div style="width: 280px; padding: 10px;">
 			<center>
 				<h3>Inicio de Sesión</h3>
+				<% if(session.getAttribute("login") == null) { %>
+					<div style="color: red;">
+					<p>Usuario y/o contraseña invalida.</p>
+					<p>Ingrese sus datos nuevamente</p>
+					</div>
+				<% } %>
 			</center>
-
+			
 			<form action="login" method="post" class="form-horizontal">
 
 				<input name="origin" type="hidden" value="<%= request.getRequestURL().toString() + "?" + (request.getQueryString() != null ? request.getQueryString() : "") %>" />

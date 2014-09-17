@@ -12,10 +12,11 @@
 <%
 	String busqueda = request.getParameter("busqueda");
 	busqueda = busqueda == null ? "" : busqueda;
-	final int usuario = 2;
+	String usuario = request.getSession().getAttribute("user") == null ? "socio" : request.getSession().getAttribute("user").toString();
+	System.out.println(usuario);
 %>
 
-<%if (usuario == 1) { %>
+<%if (usuario.contains("1")) { %>
 <br>
 <a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Socios</a>
 <a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: right">Prestamos</a>
@@ -55,7 +56,7 @@
 	<div class="form-group">
 		<button type="submit" class="btn btn-default">Buscar</button>
 		<a href="?" class="btn btn-default">Limpiar</a>
-		<% if(usuario == 1) { %><a href="Editar_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a><% } %>
+		<% if(usuario.contains("1")) { %><a href="Editar_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a><% } %>
 	</div>
 </form>
 
@@ -72,17 +73,14 @@
 	%>
 	<tr>
 		<%
-			if (usuario == 1) {
-		%>
-		<td><a href="Editar_Obra.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
-		<%
-			} else if (usuario == 2) {
+			if (usuario == null || !usuario.contains("1")) {
 		%>
 		<td><a href="Ver_Obra.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
+		
 		<%
-			} else {
+			} else  {
 		%>
-		<td><a href="Permiso_Denegado.jsp=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
+		<td><a href="Editar_Obra.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
 		<%
 			}
 		%>
