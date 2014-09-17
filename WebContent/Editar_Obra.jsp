@@ -9,12 +9,16 @@
 	String idObra = request.getParameter("id");
 	Obra obra = idObra == null ? null : Obra_BD.get_obra(Integer.valueOf(idObra));
 %>
+
 <center>
 	<h3>Formulario Obra <%= (obra == null ? "" : obra.getIdObra()) %> </h3>
 </center>
 
-<form action="alta_obra" method="post" class="form-horizontal">
-
+<% if (obra == null) { %>
+	<form action="alta_obra" method="post" class="form-horizontal">
+<% } else { %>
+	<form action="modifica_obra" method="post" class="form-horizontal">
+<% } %>
    <input class="form-control" name="id" value="<%= (obra == null ? "" : obra.getIdObra()) %>" type="hidden">
 
 	<div class="form-group">
@@ -89,8 +93,12 @@
 
 	<div class="form-group" style="text-align: center">
 		<a href="/bibliosoft/" class="btn btn-danger">Volver</a>
-		<button type="submit" class="btn btn-success">Guardar</button>
-
+		<% if (obra == null) { %>
+		<input type="submit" value="Crear" name="action" class="btn btn-success">
+		<% } else { %>
+		<input type="submit" value="Eliminar" name="action" class="btn btn-danger">
+		<input type="submit" value="Modificar" name="action" class="btn btn-success">
+		<% } %>
 	</div>
 	
 </form>

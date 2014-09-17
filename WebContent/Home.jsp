@@ -15,10 +15,13 @@
 	final int usuario = 1;
 %>
 
+<%if (usuario == 1) { %>
 <br>
 <a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Socios</a>
 <a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: right">Prestamos</a>
 <br>
+<% } %>
+
 
 <center>
 	<h3>Listado de Obras</h3>
@@ -38,11 +41,11 @@
 				for (int n = 1; n < 6; n++) {
 					if (n == tipoint) {
 			%>
-			<option selected value="<%=n%>"><%=TipoObra.opciones.get(n)%></option>
+			<option selected value="<%= n %>"><%= TipoObra.opciones.get(n) %></option>
 			<%
 				} else {
 			%>
-			<option value="<%=n%>"><%=TipoObra.opciones.get(n)%></option>
+			<option value="<%= n %>"><%= TipoObra.opciones.get(n) %></option>
 			<%
 				}
 				}
@@ -52,7 +55,7 @@
 	<div class="form-group">
 		<button type="submit" class="btn btn-default">Buscar</button>
 		<a href="?" class="btn btn-default">Limpiar</a>
-		<a href="Editar_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a>
+		<% if(usuario == 1) { %><a href="Editar_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a><% } %>
 	</div>
 </form>
 
@@ -75,7 +78,7 @@
 		<%
 			} else if (usuario == 2) {
 		%>
-		<td><a href="Alta_Prestamo.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
+		<td><a href="Ver_Obra.jsp?id=<%=obra.getIdObra()%>"><img width="100" src="<%=obra.getImagen()%>" /></a></td>
 		<%
 			} else {
 		%>
@@ -85,7 +88,7 @@
 		%>
 		<td><%=obra.getTitulo()%></td>
 		<td><%=obra.getAutor()%></td>
-		<td><%=obra.getTitulo()%></td>
+		<td><%=obra.getTipoString()%></td>
 	</tr>
 	<%
 		}

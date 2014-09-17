@@ -17,7 +17,7 @@ public class Servlet_ModificaObra extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idObra = Integer.parseInt(request.getParameter("idObra"));
+		int idObra = Integer.parseInt(request.getParameter("id"));
 		String accion = request.getParameter("action");
 		if (accion.contains("Eliminar")) {
 			this.eliminarObra(idObra);
@@ -30,13 +30,11 @@ public class Servlet_ModificaObra extends HttpServlet {
 			}
 
 	private void eliminarObra(int idObra) {
-		Obra_BD obra_bd = new Obra_BD();
-		obra_bd.baja_obra(idObra);
+		Obra_BD.baja_obra(idObra);
 	}
 
 	private void modificarObra(int idObra, String cdu, int stock) {
-		Obra_BD obra_db = new Obra_BD();
-		obra_db.modificaObra(idObra, cdu, stock);
+		Obra_BD.modificaObra(idObra, cdu, stock);
 	}
 
 }

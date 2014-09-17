@@ -28,6 +28,10 @@
     <servlet-name>Servlet_ModificaSocio</servlet-name>
     <servlet-class>negocio.Servlet_ModificaSocio</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Servlet_ModificaPrestamo</servlet-name>
+    <servlet-class>negocio.Servlet_ModificaPrestamo</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Servlet_NuevoSocio</servlet-name>
     <url-pattern>/registrar_usuario</url-pattern>
@@ -44,15 +48,6 @@
     <servlet-name>Servlet_NuevoPrestamo</servlet-name>
     <url-pattern>/nuevo_prestamo</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>/faces/*</url-pattern>
-  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Servlet_ModificaObra</servlet-name>
     <url-pattern>/modifica_obra</url-pattern>
@@ -60,5 +55,9 @@
   <servlet-mapping>
     <servlet-name>Servlet_ModificaSocio</servlet-name>
     <url-pattern>/modifica_socio</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet_ModificaPrestamo</servlet-name>
+    <url-pattern>/modifica_prestamo</url-pattern>
   </servlet-mapping>
 </web-app>

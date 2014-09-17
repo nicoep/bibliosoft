@@ -3,18 +3,30 @@ package datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import entidades.Prestamo;
 
 public class Prestamo_BD {
-	public static ArrayList<Prestamo> buscarPrestamos() throws SQLException {
+	public static ArrayList<Prestamo> buscarPrestamos(Integer estado) throws SQLException {
+		System.out.println(estado);
 		Conexion_BD con = new Conexion_BD();
 		try {
-			PreparedStatement statement;
-			statement = con.connection
-					.prepareStatement("SELECT * FROM prestamo");
+			PreparedStatement statement = null;
+			switch (estado) {
+			case 1:
+				statement = con.connection.prepareStatement("SELECT * FROM prestamo");	
+				break;
+			case 2:
+				statement = con.connection.prepareStatement("SELECT * FROM prestamo WHERE fechaRetiro is null AND fechaDevolucion is null");
+				break;
+			case 3:
+				statement = con.connection.prepareStatement("SELECT * FROM prestamo WHERE fechaRetiro is not null AND fechaDevolucion is null");
+				break;
+			case 4:
+				statement = con.connection.prepareStatement("SELECT * FROM prestamo WHERE fechaRetiro is not null AND fechaDevolucion is not null");
+				break;
+			}
 			ResultSet resultado = statement.executeQuery();
 			ArrayList<Prestamo> prestamos = new ArrayList<>();
 			while (resultado.next()) {
@@ -23,8 +35,7 @@ public class Prestamo_BD {
 				prestamo.setIdSocio(resultado.getInt("idSOcio"));
 				prestamo.setIdObra(resultado.getInt("idObra"));
 				prestamo.setFechaRetiro(resultado.getDate("fechaRetiro"));
-				prestamo.setFechaDevolucion(resultado
-						.getDate("fechaDevolucion"));
+				prestamo.setFechaDevolucion(resultado.getDate("fechaDevolucion"));
 				prestamos.add(prestamo);
 			}
 			resultado.close();
@@ -54,27 +65,36 @@ public class Prestamo_BD {
 		}
 	}
 
-	public static void registraPrestamo(int idPrestamo) throws SQLException {
+	public static void registraPrestamo(int idPrestamo) {
 		Conexion_BD con = new Conexion_BD();
 		try {
-			java.util.Date hoy = new java.util.Date();
-			PreparedStatement statement = con.connection
-					.prepareStatement("UPDATE prestamo SET fechaRetiro=? WHERE idPrestamo=?");
-			statement.setDate(1, (Date) hoy);
-			statement.setInt(2, idPrestamo);
+			PreparedStatement statement = con.connection.prepareStatement("UPDATE prestamo SET fechaRetiro=CURDATE() WHERE idPrestamo=?");
+			statement.setInt(1, idPrestamo);
 			statement.executeUpdate();
+			if (statement.executeUpdate() == 0) {
+				throw new RuntimeException("Error registrando prestamo");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		} finally {
 			con.closeConnection();
 		}
 	}
 
-	public static void finalizaPrestamo(int idPrestamo) throws SQLException {
+	public static void finalizaPrestamo(int idPrestamo) {
 		Conexion_BD con = new Conexion_BD();
-		PreparedStatement statement = con.connection
-				.prepareStatement("UPDATE prestamo SET fechaDevolucion=? WHERE idPrestamo=?");
-		statement.setInt(2, idPrestamo);
-		java.util.Date hoy = new java.util.Date();
-		statement.setDate(1, (Date) hoy);
+		try {
+			PreparedStatement statement = con.connection.prepareStatement("UPDATE prestamo SET fechaDevolucion=CURDATE() WHERE idPrestamo=?");
+			statement.setInt(1, idPrestamo);
+			if (statement.executeUpdate() == 0) {
+				throw new RuntimeException("Error finalizando prestamo");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
+		}
+
 	}
 
 	public static Prestamo getPrestamo(int idPrestamo) {
@@ -102,6 +122,21 @@ public class Prestamo_BD {
 			con.closeConnection();
 		}
 		return p;
+	}
+	
+	public static void cancelaPrestamo(int idPrestamo) {
+		Conexion_BD con = new Conexion_BD();
+		try {
+			PreparedStatement statement = con.connection.prepareStatement("DELETE FROM prestamo WHERE idPrestamo=?");
+			statement.setInt(1, idPrestamo);
+			if (statement.executeUpdate() == 0) {
+				throw new RuntimeException("Error cancelando prestamo");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
+		}
 	}
 
 }

@@ -26,26 +26,16 @@
 <br>
 <center>
 	<h3>Listado de Prestamos</h3>
-</center>	
+</center>
+	
 <form method="get" class="form-inline" style="padding: 30px 0 30px 20px; border-left: 5px solid #5bc0de">
 	<div class="form-group">
-		<label> Estado: </label> <select class="form-control" name="tipo">
-			<%
-				String tipo = request.getParameter("tipo");
-				int tipoint = tipo == null ? 1 : Integer.valueOf(tipo);
-
-				for (int n = 1; n < 6; n++) {
-					if (n == tipoint) {
-			%>
-			<option selected value="<%=n%>"><%=TipoObra.opciones.get(n)%></option>
-			<%
-				} else {
-			%>
-			<option value="<%=n%>"><%=TipoObra.opciones.get(n)%></option>
-			<%
-				}
-				}
-			%>
+		<label> Estado: </label>
+		<select class="form-control" name="estado">
+			<option value="1">Todos</option>
+			<option value="2">Pendientes</option>
+			<option value="3">Retirados</option>
+			<option value="4">Finalizados</option>
 		</select>
 	</div>
 	<div class="form-group">
@@ -53,6 +43,7 @@
 		<a href="?" class="btn btn-default">Limpiar</a>
 	</div>
 </form>
+
 
 <table class="table table-striped">
 	<tr>
@@ -63,7 +54,9 @@
 		<th>Fecha de Devolucion</th>
 	</tr>
 	<%
-		List<Prestamo> prestamos = Prestamo_BD.buscarPrestamos();
+		String estado = request.getParameter("estado");
+		int estadoint = estado == null ? 1 : Integer.valueOf(estado);
+		List<Prestamo> prestamos = Prestamo_BD.buscarPrestamos(estadoint);
 		for (Prestamo p : prestamos) {
 			String legajo = Socio_BD.traerLegajo(p.getIdSocio());
 			String titulo = Obra_BD.traerTitulo(p.getIdObra());

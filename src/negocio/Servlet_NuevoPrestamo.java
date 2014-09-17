@@ -18,9 +18,8 @@ public class Servlet_NuevoPrestamo extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("idObra"));
 		int idObra = Integer.parseInt(request.getParameter("idObra"));
-		int idSocio = 1;
+		int idSocio = (int) request.getSession().getAttribute("user");
 		try {
 			this.nuevoPrestamo(idSocio, idObra);
 			response.sendRedirect("/bibliosoft/");
@@ -30,8 +29,7 @@ public class Servlet_NuevoPrestamo extends HttpServlet {
 	}
 
 	private void nuevoPrestamo(int idSocio, int idObra) throws SQLException {
-		Prestamo_BD prestamos_bd = new Prestamo_BD();
-		prestamos_bd.nuevoPrestamo(idObra, idSocio);
+		Prestamo_BD.nuevoPrestamo(idObra, idSocio);
 	}
 
 }
