@@ -15,8 +15,6 @@
 	<h3>Formulario Obra <%= (obra == null ? "" : obra.getIdObra()) %> </h3>
 </center>
 <br>
-<br>
-<br>
 <% if (obra == null) { %>
 	<form action="alta_obra" method="post" class="form-horizontal">
 <% } else { %>
@@ -96,7 +94,7 @@
 	</div>
 
 	<div class="form-group" style="text-align: center">
-		<a href="/bibliosoft/" class="btn btn-danger">Volver</a>
+		<a href="/bibliosoft/" class="btn btn-warning">Volver</a>
 		<% if (obra == null) { %>
 		<input type="submit" value="Crear" name="action" class="btn btn-success">
 		<% } else { %>

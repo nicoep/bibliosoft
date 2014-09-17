@@ -78,7 +78,7 @@
 	<br>
 
 	<div class="form-group" style="text-align: center">
-		<a href="/bibliosoft/Listado_Socios.jsp" class="btn btn-danger">Volver</a>
+		<a href="/bibliosoft/Listado_Socios.jsp" class="btn btn-warning">Volver</a>
 		<input type="submit" value="Guardar" name="action" class="btn btn-success">
 	</div>
 </form>

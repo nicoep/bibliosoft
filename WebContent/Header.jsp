@@ -15,8 +15,8 @@
 				<%
 					if (session.getAttribute("user") != null) {
 				%>
-						<form action="login" method="get">
-							<button type="submit" class="btn btn-primary">Logout</button>
+						<form action="login" method="get" style="display: inline-block;">
+							<button type="submit" class="btn btn-danger">Logout</button>
 						</form>
 				<%
 					} else {
@@ -58,7 +58,7 @@
 				<%
 					}
 				%>
-			<a href="/bibliosoft/" class="btn btn-info">Home</a>
+			<a href="/bibliosoft/" class="btn btn-default">Home</a>
 		</div>
 	</div>
 	<div class="container">

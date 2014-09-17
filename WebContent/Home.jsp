@@ -17,8 +17,8 @@
 
 <%if (usuario.contains("1")) { %>
 <br>
-<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: left">Socios</a>
-<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: left; margin-left: 10px;">Prestamos</a>
+<a href="Listado_Socios.jsp" class="btn btn-info" style="float: left">Socios</a>
+<a href="Listado_Prestamos.jsp" class="btn btn-info" style="float: left; margin-left: 10px;">Prestamos</a>
 <br>
 <% } %>
 
@@ -55,7 +55,7 @@
 	<div class="form-group">
 		<button type="submit" class="btn btn-default">Buscar</button>
 		<a href="?" class="btn btn-default">Limpiar</a>
-		<% if(usuario.contains("1")) { %><a href="Editar_Obra.jsp" class="btn btn-primary" style="float: right">Agregar Obra</a><% } %>
+		<% if(usuario.contains("1")) { %><a href="Editar_Obra.jsp" class="btn btn-warning" style="float: right; margin-left: 20px;">Agregar Obra</a><% } %>
 	</div>
 </form>
 

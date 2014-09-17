@@ -20,8 +20,8 @@
 %>
 
 <br>
-<a href="Home.jsp" class="btn btn-primary" style="float: left;">Obras</a>
-<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: left; margin-left: 10px;">Prestamos</a>
+<a href="Home.jsp" class="btn btn-info" style="float: left;">Obras</a>
+<a href="Listado_Prestamos.jsp" class="btn btn-info" style="float: left; margin-left: 10px;">Prestamos</a>
 <br>
 <center>
 	<h3>Listado de Socios</h3>
@@ -51,7 +51,7 @@
 		for (Socio s : socios) {
 	%>
 	<tr>
-		<td><a href="Socio.jsp?id=<%=s.getIdSocio()%>"><%= s.getLegajo() %></a></td>
+		<td><a href="Socio.jsp?id=<%= s.getIdSocio() %>"><%= s.getLegajo() %></a></td>
 		<td><%=s.getNombre()%></td>
 		<td><%=s.getApellido()%></td>
 		<td><%=s.getEmail()%></td>
