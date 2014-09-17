@@ -9,6 +9,25 @@ import entidades.Obra;
 
 public class Obra_BD {
 	
+	public static int getStock(int idObra) {
+		Conexion_BD con = new Conexion_BD();
+		Integer stock = null;
+		try {
+			PreparedStatement statement;
+			statement = con.connection.prepareStatement("SELECT stock FROM obra WHERE idObra=?");
+			statement.setInt(1, idObra);
+			ResultSet resultado = statement.executeQuery();
+			if (resultado.next()) {
+				stock = Integer.valueOf(resultado.getString("stock")); 
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
+		}
+		return stock;
+	}
+	
 	public static void alta_obra(String titulo, String autor, String editorial, String cdu, String isbn, int stock, int idTipo, String imagen) {
 		Conexion_BD con = new Conexion_BD();
 		try {

@@ -17,7 +17,9 @@
 				<%
 					if (session.getAttribute("user") != null) {
 				%>
-						<a href="login?user=&clave=" class="btn btn-primary">Logout</a>
+						<form action="login" method="get" class="form-horizontal">
+							<button type="submit" class="btn btn-primary">Logout</button>
+						</form>
 				<%
 					} else {
 				%>

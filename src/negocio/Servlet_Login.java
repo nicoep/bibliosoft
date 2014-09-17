@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import datos.Socio_BD;
 
@@ -17,15 +18,22 @@ public class Servlet_Login extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sesion = request.getSession();
 		String user = request.getParameter("usuario");
 		String pass = request.getParameter("clave");
 		Integer id = Socio_BD.getUsuario(user, pass);
-		request.getSession().setAttribute("user", id);
-		response.sendRedirect(request.getParameter("origin"));
+		if (id != null) {
+			sesion.setAttribute("user", id);
+			response.sendRedirect("/bibliosoft/");
+		} else {
+			System.out.println("datos incorrectos");
+		}
+	
 	}
 
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
+		HttpSession sesion = req.getSession();
+		sesion.invalidate();
+		resp.sendRedirect("/bibliosoft/");
 	}
 }

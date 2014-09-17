@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import entidades.Prestamo;
 
 public class Prestamo_BD {
+	
 	public static ArrayList<Prestamo> buscarPrestamos(Integer estado) throws SQLException {
-		System.out.println(estado);
 		Conexion_BD con = new Conexion_BD();
 		try {
 			PreparedStatement statement = null;
@@ -47,16 +47,24 @@ public class Prestamo_BD {
 		}
 	}
 
-	public static void nuevoPrestamo(int idObra, int idSocio) throws SQLException {
+	public static void nuevoPrestamo(int idObra, int idSocio, int stockObra) {
 		Conexion_BD con = new Conexion_BD();
 		try {
-			PreparedStatement statement;
-			statement = con.connection
-					.prepareStatement("INSERT INTO prestamo (idPrestamo, idSocio, idObra, fechaRetiro, fechaDevolucion) VALUES (null, ?, ?, null, null)");
-			statement.setInt(1, idSocio);
-			statement.setInt(2, idObra);
-			if (statement.executeUpdate() == 0) {
+			PreparedStatement statement1;
+			PreparedStatement statement2;
+			statement1 = con.connection.prepareStatement("INSERT INTO prestamo (idPrestamo, idSocio, idObra, fechaRetiro, fechaDevolucion) VALUES (null, ?, ?, null, null)");
+			statement1.setInt(1, idSocio);
+			statement1.setInt(2, idObra);
+			if (statement1.executeUpdate() == 0) {
 				throw new RuntimeException("Error dando de alta prestamo");
+			} else {
+				int stockNuevo = stockObra - 1;
+				statement2 = con.connection.prepareStatement("UPDATE obra SET stock=? WHERE idObra=?");
+				statement2.setInt(1, stockNuevo);
+				statement2.setInt(2, idObra);
+				if (statement2.executeUpdate() == 0) {
+					throw new RuntimeException("Error actualizando stock");
+				}
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -81,13 +89,23 @@ public class Prestamo_BD {
 		}
 	}
 
-	public static void finalizaPrestamo(int idPrestamo) {
+	public static void finalizaPrestamo(int idPrestamo, int idObra, int stock) {
 		Conexion_BD con = new Conexion_BD();
 		try {
-			PreparedStatement statement = con.connection.prepareStatement("UPDATE prestamo SET fechaDevolucion=CURDATE() WHERE idPrestamo=?");
-			statement.setInt(1, idPrestamo);
-			if (statement.executeUpdate() == 0) {
+			PreparedStatement statement1;
+			PreparedStatement statement2;
+			statement1 = con.connection.prepareStatement("UPDATE prestamo SET fechaDevolucion=CURDATE() WHERE idPrestamo=?");
+			statement1.setInt(1, idPrestamo);
+			if (statement1.executeUpdate() == 0) {
 				throw new RuntimeException("Error finalizando prestamo");
+			} else {
+				statement2 = con.connection.prepareStatement("UPDATE obra SET stock=? WHERE idObra=?");
+				statement2.setInt(2, idObra);
+				int stockNuevo = stock + 1;
+				statement2.setInt(1, stockNuevo);
+				if (statement2.executeUpdate() == 0) {
+					throw new RuntimeException("Error actualizando stock");
+				}
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

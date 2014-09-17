@@ -61,7 +61,9 @@
 
 	<div class="form-group" style="text-align: center">
 		<a href="/bibliosoft/" class="btn btn-danger">Volver</a>
-		<button type="submit" class="btn btn-success">Reservar</button>
+		<% if (Obra_BD.getStock(obra.getIdObra()) > 0) { %>
+			<button type="submit" class="btn btn-success">Reservar</button>
+		<% } %>
 	</div>
 </form>
 <jsp:include page="Footer.jsp" />

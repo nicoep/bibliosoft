@@ -12,7 +12,7 @@
 <%
 	String busqueda = request.getParameter("busqueda");
 	busqueda = busqueda == null ? "" : busqueda;
-	final int usuario = 1;
+	final int usuario = 2;
 %>
 
 <%if (usuario == 1) { %>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datos.Obra_BD;
 import datos.Prestamo_BD;
 
 public class Servlet_ModificaPrestamo extends HttpServlet {
@@ -24,7 +25,11 @@ public class Servlet_ModificaPrestamo extends HttpServlet {
 		} else if (accion.contains("Retirar")) {
 			Prestamo_BD.registraPrestamo(idPrestamo);
 		} else if (accion.contains("Finalizar")) {
-			Prestamo_BD.finalizaPrestamo(idPrestamo);
+			int idObra = Integer.valueOf(request.getParameter("idObra"));
+			int stock = Obra_BD.getStock(idObra);
+			System.out.println(stock);
+			Prestamo_BD.finalizaPrestamo(idPrestamo, idObra, stock);
+			System.out.println(Obra_BD.getStock(idObra));
 		}
 		response.sendRedirect("/bibliosoft/Listado_Prestamos.jsp");
 	}

@@ -27,42 +27,42 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Id del Socio:</label>
 		<div class="col-sm-6">
-			<input class="form-control" name="idPrestamo" value="<%=prestamo.getIdPrestamo()%>" readonly="readonly" style="text-align:left">
+			<input class="form-control" name="idSocio" value="<%= prestamo.getIdSocio() %>" readonly="readonly" style="text-align:left">
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Legajo del Socio:</label>
 		<div class="col-sm-6">
-			<input class="form-control" name="idSocio" value="<%=Socio_BD.traerLegajo(prestamo.getIdSocio())%>" readonly="readonly" style="text-align:left">
+			<input class="form-control" name="legajo" value="<%= Socio_BD.traerLegajo(prestamo.getIdSocio()) %>" readonly="readonly" style="text-align:left">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Id de la Obra:</label>
 		<div class="col-sm-6">
-			<input class="form-control" name="idObra" value="<%=prestamo.getIdObra()%>" readonly="readonly" style="text-align:left">
+			<input class="form-control" name="idObra" value="<%= prestamo.getIdObra() %>" readonly="readonly" style="text-align:left">
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Titulo de la Obra:</label>
 		<div class="col-sm-6">
-			<input class="form-control" name="titulo" value="<%=Obra_BD.traerTitulo(prestamo.getIdObra())%>" readonly="readonly" style="text-align:left">
+			<input class="form-control" name="titulo" value="<%= Obra_BD.traerTitulo(prestamo.getIdObra()) %>" readonly="readonly" style="text-align:left">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Fecha de Retiro:</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="fechaRetiro" value="<%=prestamo.getFechaRetiro() == null ? "" : prestamo.getFechaRetiro()%>" style="text-align:left">
+			<input type="text" class="form-control" name="fechaRetiro" value="<%= prestamo.getFechaRetiro() == null ? "" : prestamo.getFechaRetiro() %>" style="text-align:left">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Fecha de Devolucion:</label>
 		<div class="col-sm-6">
-			<input class="form-control" name="fechaDevolucion" value="<%=prestamo.getFechaDevolucion() == null ? "" : prestamo.getFechaDevolucion()%>" style="text-align:left">
+			<input class="form-control" name="fechaDevolucion" value="<%= prestamo.getFechaDevolucion() == null ? "" : prestamo.getFechaDevolucion() %>" style="text-align:left">
 		</div>
 	</div>
 
