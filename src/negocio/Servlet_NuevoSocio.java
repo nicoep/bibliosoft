@@ -35,7 +35,6 @@ public class Servlet_NuevoSocio extends HttpServlet {
 	private void altaSocio(String nombre, String apellido, String dni,
 			String direccion, String telefono, String email, String legajo,
 			String usuario, String clave) throws SQLException {
-		Socio_BD sociobd = new Socio_BD();
-		sociobd.altaSocio(nombre, apellido, dni, direccion, telefono, email, legajo, usuario, clave);
+		Socio_BD.altaSocio(nombre, apellido, dni, direccion, telefono, email, legajo, usuario, clave);
 	}
 }

@@ -24,7 +24,7 @@ public class Servlet_NuevoPrestamo extends HttpServlet {
 			int idSocio = (int) request.getSession().getAttribute("user");
 			int stockObra = Obra_BD.getStock(idObra);
 			Prestamo_BD.nuevoPrestamo(idObra, idSocio, stockObra);
-			response.sendRedirect("/bibliosoft/");
+			response.sendRedirect("/bibliosoft/Comprobante.jsp?id="+idObra);
 		}
 		
 	}

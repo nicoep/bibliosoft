@@ -27,9 +27,7 @@ public class Servlet_ModificaPrestamo extends HttpServlet {
 		} else if (accion.contains("Finalizar")) {
 			int idObra = Integer.valueOf(request.getParameter("idObra"));
 			int stock = Obra_BD.getStock(idObra);
-			System.out.println(stock);
 			Prestamo_BD.finalizaPrestamo(idPrestamo, idObra, stock);
-			System.out.println(Obra_BD.getStock(idObra));
 		}
 		response.sendRedirect("/bibliosoft/Listado_Prestamos.jsp");
 	}

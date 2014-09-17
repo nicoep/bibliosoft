@@ -20,15 +20,15 @@
 %>
 
 <br>
-<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: right">Prestamos</a>
-<a href="Home.jsp" class="btn btn-primary" style="float: right">Obras</a>
+<a href="Home.jsp" class="btn btn-primary" style="float: left;">Obras</a>
+<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: left; margin-left: 10px;">Prestamos</a>
 <br>
 <center>
 	<h3>Listado de Socios</h3>
 </center>	
 <form method="get" class="form-inline" style="padding: 30px 0 30px 20px; border-left: 5px solid #5bc0de">
 	<div class="form-group">
-		<label>Buscar: </label>
+		<label>Legajo:  </label>
 		<input autofocus class="form-control" type="text" name="busqueda" value="<%=busqueda%>">
 	</div>
 	<div class="form-group">

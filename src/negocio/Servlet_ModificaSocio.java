@@ -31,8 +31,7 @@ public class Servlet_ModificaSocio extends HttpServlet {
 
 	private void modificarSocio(int idSocio, String nombre, String apellido, String dni,
 			String direccion, String telefono, String email, String legajo) {
-		Socio_BD socio_bd = new Socio_BD();
-		socio_bd.modificaSocio(idSocio, nombre, apellido, dni, direccion, telefono, email, legajo);
+		Socio_BD.modificaSocio(idSocio, nombre, apellido, dni, direccion, telefono, email, legajo);
 		
 	}
 

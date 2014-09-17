@@ -9,16 +9,20 @@
 	String idObra = request.getParameter("id");
 	Obra obra = idObra == null ? null : Obra_BD.get_obra(Integer.valueOf(idObra));
 %>
-
+<br>
+<br>
 <center>
 	<h3>Formulario Obra <%= (obra == null ? "" : obra.getIdObra()) %> </h3>
 </center>
-
+<br>
+<br>
+<br>
 <% if (obra == null) { %>
 	<form action="alta_obra" method="post" class="form-horizontal">
 <% } else { %>
 	<form action="modifica_obra" method="post" class="form-horizontal">
 <% } %>
+
    <input class="form-control" name="id" value="<%= (obra == null ? "" : obra.getIdObra()) %>" type="hidden">
 
 	<div class="form-group">

@@ -10,7 +10,6 @@
 
 <%
 	Socio s = Socio_BD.getSocio(Integer.valueOf(request.getParameter("id")));
-	System.out.println(s);
 %>
 <center>
 	<h3>Datos del Socio</h3>

@@ -13,13 +13,12 @@
 	String busqueda = request.getParameter("busqueda");
 	busqueda = busqueda == null ? "" : busqueda;
 	String usuario = request.getSession().getAttribute("user") == null ? "socio" : request.getSession().getAttribute("user").toString();
-	System.out.println(usuario);
 %>
 
 <%if (usuario.contains("1")) { %>
 <br>
-<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Socios</a>
-<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: right">Prestamos</a>
+<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: left">Socios</a>
+<a href="Listado_Prestamos.jsp" class="btn btn-primary" style="float: left; margin-left: 10px;">Prestamos</a>
 <br>
 <% } %>
 

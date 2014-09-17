@@ -12,19 +12,18 @@
 	<div class="container">
 		<h1 style="float: left">Biblioteca UTN FRRo</h1>
 		<div style="float: right; margin-top: 20px">
-		
-			<div class="dropdown" style="display: inline-block">
 				<%
 					if (session.getAttribute("user") != null) {
 				%>
-						<form action="login" method="get" class="form-horizontal">
+						<form action="login" method="get">
 							<button type="submit" class="btn btn-primary">Logout</button>
 						</form>
 				<%
 					} else {
 				%>
-						<a data-toggle="dropdown" class="btn btn-primary">Login</a>
-						<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
+						<div class="dropdown" style="display: inline-block">
+							<a data-toggle="dropdown" class="btn btn-primary">Login</a>
+							<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
 							<div style="width: 280px; padding: 10px;">
 								<center>
 									<h3>Inicio de Sesión</h3>
@@ -55,11 +54,10 @@
 								
 							</div>
 						</ul>
-					</div>
-			<%
-				}
-			%>
-
+						</div>
+				<%
+					}
+				%>
 			<a href="/bibliosoft/" class="btn btn-info">Home</a>
 		</div>
 	</div>

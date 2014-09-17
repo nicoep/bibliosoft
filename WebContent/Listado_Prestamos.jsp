@@ -21,8 +21,8 @@
 %>
 
 <br>
-<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: right">Socios</a>
-<a href="Home.jsp" class="btn btn-primary" style="float: right">Obras</a>
+<a href="Listado_Socios.jsp" class="btn btn-primary" style="float: left">Socios</a>
+<a href="Home.jsp" class="btn btn-primary" style="float: left; margin-left: 10px;">Obras</a>
 <br>
 <center>
 	<h3>Listado de Prestamos</h3>
