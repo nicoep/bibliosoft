@@ -24,10 +24,10 @@ public class Servlet_Login extends HttpServlet {
 		Integer id = Socio_BD.getUsuario(user, pass);
 		if (id != null) {
 			sesion.setAttribute("user", id);
-			response.sendRedirect("/bibliosoft/");
+			response.sendRedirect("");
 		} else {
 			sesion.setAttribute("login", null);
-			response.sendRedirect("/bibliosoft/InicioSesion.jsp");
+			response.sendRedirect("InicioSesion.jsp");
 		}
 	
 	}
@@ -35,6 +35,6 @@ public class Servlet_Login extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession sesion = req.getSession();
 		sesion.invalidate();
-		resp.sendRedirect("/bibliosoft/");
+		resp.sendRedirect("Home.jsp");
 	}
 }

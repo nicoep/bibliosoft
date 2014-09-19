@@ -22,19 +22,24 @@ public class Servlet_ModificaObra extends HttpServlet {
 		if (accion.contains("Eliminar")) {
 			this.eliminarObra(idObra);
 		} else {
+			String titulo = request.getParameter("titulo");
+			String autor = request.getParameter("autor");
+			String editorial = request.getParameter("editorial");
 			String cdu = request.getParameter("cdu");
+			String isbn = request.getParameter("isbn");
+			String imagen = request.getParameter("imagen");
 			int stock = Integer.parseInt(request.getParameter("stock"));
-			this.modificarObra(idObra, cdu, stock);
+			int tipoObra = Integer.valueOf(request.getParameter("tipoObra"));
+			this.modificarObra(idObra, titulo, autor, editorial, cdu, isbn, imagen, stock, tipoObra);
 		}
-		response.sendRedirect("/bibliosoft/");
-			}
+		response.sendRedirect("Home.jsp");
+	}
+
+	private void modificarObra(int idObra, String titulo, String autor, String editorial, String cdu, String isbn, String imagen, int stock, int tipoObra) {
+		Obra_BD.modificaObra(idObra, titulo, autor, editorial, cdu, isbn, imagen, stock, tipoObra);
+	}
 
 	private void eliminarObra(int idObra) {
 		Obra_BD.baja_obra(idObra);
 	}
-
-	private void modificarObra(int idObra, String cdu, int stock) {
-		Obra_BD.modificaObra(idObra, cdu, stock);
-	}
-
 }

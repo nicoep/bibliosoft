@@ -18,13 +18,13 @@ public class Servlet_NuevoPrestamo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		if (request.getSession().getAttribute("user") == null) {
-			response.sendRedirect("/bibliosoft/InicioSesion.jsp");
+			response.sendRedirect("InicioSesion.jsp");
 		} else {
 			int idObra = Integer.parseInt(request.getParameter("idObra"));
 			int idSocio = (int) request.getSession().getAttribute("user");
 			int stockObra = Obra_BD.getStock(idObra);
 			Prestamo_BD.nuevoPrestamo(idObra, idSocio, stockObra);
-			response.sendRedirect("/bibliosoft/Comprobante.jsp?id="+idObra);
+			response.sendRedirect("Comprobante.jsp?id="+idObra);
 		}
 		
 	}

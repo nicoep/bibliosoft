@@ -26,8 +26,9 @@ public class Servlet_AltaObra extends HttpServlet {
 		String imagen = request.getParameter("imagen");
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		int idTipo = Integer.parseInt(request.getParameter("tipoObra"));
+		System.out.println(titulo + autor);
 		this.altaObra(titulo, autor, editorial, cdu, isbn, stock, idTipo, imagen);
-		response.sendRedirect("/bibliosoft/");
+		response.sendRedirect("Home.jsp");
 	}
 
 	private void altaObra(String titulo, String autor, String editorial,

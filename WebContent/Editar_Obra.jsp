@@ -11,14 +11,16 @@
 %>
 <br>
 <br>
+
 <center>
 	<h3>Formulario Obra <%= (obra == null ? "" : obra.getIdObra()) %> </h3>
 </center>
+
 <br>
 <% if (obra == null) { %>
-	<form action="alta_obra" method="post" class="form-horizontal">
+	<form action="alta_obra" method="post" class="form-horizontal" accept-charset="UTF-8">
 <% } else { %>
-	<form action="modifica_obra" method="post" class="form-horizontal">
+	<form action="modifica_obra" method="post" class="form-horizontal" accept-charset="UTF-8">
 <% } %>
 
    <input class="form-control" name="id" value="<%= (obra == null ? "" : obra.getIdObra()) %>" type="hidden">
@@ -78,14 +80,14 @@
 			<select name="tipoObra" class="form-control">
 				<%
 				for (int n = 1; n < 6; n++) {
-					if (obra!=null && obra.getIdObra() == n) {
-						%>
-						<option selected value="<%= n %>"><%=TipoObra.opciones.get(n) %></option>
-						<%
+					if (obra != null && obra.getIdTipo() == n) {
+				%>
+						<option selected value="<%= n %>"><%= TipoObra.opciones.get(n) %></option>
+				<%
 					} else { 
-					%>
-					<option value="<%= n %>"><%=TipoObra.opciones.get(n) %></option>
-					<%
+				%>
+						<option value="<%= n %>"><%=TipoObra.opciones.get(n) %></option>
+				<%
 					}
 				}
 				%>
@@ -94,12 +96,12 @@
 	</div>
 
 	<div class="form-group" style="text-align: center">
-		<a href="/bibliosoft/" class="btn btn-warning">Volver</a>
+		<a href="Home.jsp" class="btn btn-warning">Volver</a>
 		<% if (obra == null) { %>
-		<input type="submit" value="Crear" name="action" class="btn btn-success">
+			<input type="submit" value="Crear" name="action" class="btn btn-success">
 		<% } else { %>
-		<input type="submit" value="Eliminar" name="action" class="btn btn-danger">
-		<input type="submit" value="Modificar" name="action" class="btn btn-success">
+			<input type="submit" value="Eliminar" name="action" class="btn btn-danger">
+			<input type="submit" value="Modificar" name="action" class="btn btn-success">
 		<% } %>
 	</div>
 	

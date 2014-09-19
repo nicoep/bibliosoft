@@ -56,13 +56,6 @@
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">Stock:</label>
-		<div class="col-sm-6">
-			<label class="control-label"><%=obra.getStock()%></label>
-		</div>
-	</div>
-
-	<div class="form-group">
 		<label class="col-sm-3 control-label">Tipo de Obra:</label>
 		<div class="col-sm-6">
 			<label class="control-label"><%=obra.getTipoString()%></label>
@@ -70,7 +63,7 @@
 	</div>
 
 	<div class="form-group" style="text-align: center">
-		<a href="/bibliosoft/" class="btn btn-succes	s">Finalizar</a>
+		<a href="Home.jsp" class="btn btn-success">Finalizar</a>
 	</div>
 
 </form>

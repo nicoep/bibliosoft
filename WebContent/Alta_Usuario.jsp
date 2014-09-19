@@ -60,7 +60,7 @@
 		</div>
 	</div>
 	<div class="form-group" style="text-align: center">
-		<a href="/bibliosoft/" class="btn btn-danger">Volver</a>
+		<a href="Home.jsp" class="btn btn-danger">Volver</a>
 		<button type="submit" class="btn btn-success">Registrarse</button>
 	</div>
 </form>

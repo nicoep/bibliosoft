@@ -28,7 +28,7 @@ public class Servlet_NuevoSocio extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("/bibliosoft/");
+		response.sendRedirect("Home.jsp");
 
 	}
 

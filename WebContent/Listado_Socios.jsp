@@ -16,7 +16,6 @@
 <%
 	String busqueda = request.getParameter("busqueda");
 	busqueda = busqueda == null ? "" : busqueda;
-	final int usuario = 1;
 %>
 
 <br>

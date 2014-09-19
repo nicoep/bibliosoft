@@ -1,3 +1,5 @@
+<%@page import="datos.Socio_BD"%>
+<%@page import="entidades.Socio"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,7 +16,11 @@
 		<div style="float: right; margin-top: 20px">
 				<%
 					if (session.getAttribute("user") != null) {
+						int idSocio = Integer.valueOf(session.getAttribute("user").toString());
+						Socio socio = Socio_BD.getSocio(idSocio);
+						String nombre = socio.getNombre();
 				%>
+						<label style="margin-right: 20px;">Bienvenido <%= nombre %></label>
 						<form action="login" method="get" style="display: inline-block;">
 							<button type="submit" class="btn btn-danger">Logout</button>
 						</form>
@@ -58,7 +64,7 @@
 				<%
 					}
 				%>
-			<a href="/bibliosoft/" class="btn btn-default">Home</a>
+			<a href="Home.jsp" class="btn btn-default">Home</a>
 		</div>
 	</div>
 	<div class="container">

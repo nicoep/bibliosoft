@@ -22,14 +22,21 @@ public class Servlet_ModificaPrestamo extends HttpServlet {
 		int idPrestamo = Integer.valueOf(request.getParameter("idPrestamo"));
 		if (accion.contains("Cancelar")) {
 			Prestamo_BD.cancelaPrestamo(idPrestamo);
+			response.sendRedirect("Listado_Prestamos.jsp");
 		} else if (accion.contains("Retirar")) {
-			Prestamo_BD.registraPrestamo(idPrestamo);
+			int cantidad = Prestamo_BD.cantidadPrestamosSocio(Integer.valueOf(request.getParameter("idSocio")));
+			if (cantidad >= 2) {
+				response.sendRedirect("Error.jsp");
+			} else {
+				Prestamo_BD.registraPrestamo(idPrestamo);
+				response.sendRedirect("Listado_Prestamos.jsp");
+			}
 		} else if (accion.contains("Finalizar")) {
 			int idObra = Integer.valueOf(request.getParameter("idObra"));
 			int stock = Obra_BD.getStock(idObra);
 			Prestamo_BD.finalizaPrestamo(idPrestamo, idObra, stock);
+			response.sendRedirect("Listado_Prestamos.jsp");
 		}
-		response.sendRedirect("/bibliosoft/Listado_Prestamos.jsp");
 	}
 
 }

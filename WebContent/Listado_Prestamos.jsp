@@ -17,7 +17,6 @@
 <%
 	String busqueda = request.getParameter("busqueda");
 	busqueda = busqueda == null ? "" : busqueda;
-	final int usuario = 2;
 %>
 
 <br>
@@ -32,10 +31,24 @@
 	<div class="form-group">
 		<label> Estado: </label>
 		<select class="form-control" name="estado">
-			<option value="1">Todos</option>
-			<option value="2">Pendientes</option>
-			<option value="3">Retirados</option>
-			<option value="4">Finalizados</option>
+		<%
+			HashMap<Integer, String> m = new HashMap<Integer, String>();
+			m.put(1, "Todos");
+			m.put(2, "Pendientes");
+			m.put(3, "Retirados");
+			m.put(4, "Finalizados");
+			for (int n=1; n<5; n++) {
+				if (request.getParameter("estado") != null && request.getParameter("estado").equals(String.valueOf(n))) {
+		%>
+				 <option value="<%= n %>" selected><%= m.get(n) %></option>
+		<% 		
+				} else {
+		%>
+					 <option value="<%= n %>"><%= m.get(n) %></option>
+		<%	
+				}
+			}
+		%>
 		</select>
 	</div>
 	<div class="form-group">
@@ -48,7 +61,7 @@
 <table class="table table-striped">
 	<tr>
 		<th>idPrestamo</th>
-		<th>Legajo Socio</th>
+		<th>Legajo del Socio</th>
 		<th>Titulo</th>
 		<th>Fecha de Retiro</th>
 		<th>Fecha de Devolucion</th>

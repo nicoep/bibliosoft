@@ -157,4 +157,22 @@ public class Prestamo_BD {
 		}
 	}
 
+	public static int cantidadPrestamosSocio(int idSocio) {
+		Conexion_BD con = new Conexion_BD();
+		int cantidad = 0;
+		try {
+			PreparedStatement statement = con.connection.prepareStatement("SELECT COUNT(*) FROM prestamo WHERE idSocio=? AND fechaDevolucion is null AND fechaRetiro is not null");
+			statement.setInt(1, idSocio);
+			ResultSet resultado = statement.executeQuery();
+			if (resultado.next()) {
+				cantidad = resultado.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			con.closeConnection();
+		}
+		return cantidad;
+	}
+
 }

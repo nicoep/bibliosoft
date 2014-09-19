@@ -26,7 +26,7 @@ public class Servlet_ModificaSocio extends HttpServlet {
 		String email = request.getParameter("email");
 		String legajo = request.getParameter("legajo");
 		this.modificarSocio(idSocio, nombre, apellido, dni, direccion, telefono, email, legajo);
-		response.sendRedirect("/bibliosoft/Listado_Socios.jsp");
+		response.sendRedirect("Listado_Socios.jsp");
 	}
 
 	private void modificarSocio(int idSocio, String nombre, String apellido, String dni,

@@ -55,14 +55,14 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Fecha de Retiro:</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="fechaRetiro" value="<%= prestamo.getFechaRetiro() == null ? "" : prestamo.getFechaRetiro() %>" style="text-align:left">
+			<input type="text" class="form-control" name="fechaRetiro" value="<%= prestamo.getFechaRetiro() == null ? "" : prestamo.getFechaRetiro() %>" style="text-align:left" readonly="readonly">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Fecha de Devolucion:</label>
 		<div class="col-sm-6">
-			<input class="form-control" name="fechaDevolucion" value="<%= prestamo.getFechaDevolucion() == null ? "" : prestamo.getFechaDevolucion() %>" style="text-align:left">
+			<input class="form-control" name="fechaDevolucion" value="<%= prestamo.getFechaDevolucion() == null ? "" : prestamo.getFechaDevolucion() %>" style="text-align:left" readonly="readonly">
 		</div>
 	</div>
 
@@ -70,10 +70,10 @@
 
 	<div class="form-group" style="text-align: center">
 	
-		<a href="/bibliosoft/Listado_Prestamos.jsp" class="btn btn-danger">Volver</a>
+		<a href="Listado_Prestamos.jsp" class="btn btn-danger">Volver</a>
 		
 		<% if (prestamo.getFechaRetiro() == null) { %>
-			<input type="submit" value="Cancelar" name="action" class="btn btn-success">
+			<input type="submit" value="Cancelar" name="action" class="btn btn-warning">
 			<input type="submit" value="Retirar" name="action" class="btn btn-success">
 		<% } else if (prestamo.getFechaDevolucion() == null) { %>
 			<input type="submit" value="Finalizar" name="action" class="btn btn-success">
